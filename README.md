@@ -3,7 +3,9 @@
 Fashion-MNIST tested on a simple LR model using pyTorch. Accuracy after 50 epochs with 0.0001 learning rate (10 batch size):
 
 No quantization:
+
 Total training time: 634.4874987602234 s
+
 Best accuracy: 84.91000366210938 %
 
 ![Picture1](https://user-images.githubusercontent.com/105780035/222964994-bbd02358-71c8-43fb-af37-85206a634f22.png)
@@ -13,8 +15,8 @@ Best accuracy: 84.91000366210938 %
 
 Quantized:
 
-Quantized:
 Total training time: 688.3150005340576
+
 Best accuracy: 67.9800033569336
 
 ![Picture3](https://user-images.githubusercontent.com/105780035/222965030-43a8cf88-923d-4f71-a720-4ff43283462e.png)

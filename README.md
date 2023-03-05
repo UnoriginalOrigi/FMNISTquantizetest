@@ -1,6 +1,6 @@
 # FMNISTquantizetest
 
-Fashion-MNIST tested on a simple LR model using pyTorch. Reporting accuracy after 50 epochs with 0.0001 learning rate (10 batch size). Tested on Windows with i5-8600K
+Fashion-MNIST tested on a simple LR model with quantization (resized to 8x8 from 28x28 and pixel values reduced from [0; 255] (8-bit) to [0;7] (3-bit)) using pyTorch. Reporting accuracy after 50 epochs with 0.0001 learning rate (10 batch size). Tested on Windows with i5-8600K
 
 No quantization:
 

@@ -3,6 +3,7 @@ import torch.nn as nn
 from torch.autograd import Variable
 import torchvision
 from tqdm import tqdm
+import time
 
 from pathlib import Path
 
@@ -38,7 +39,7 @@ p = Path('.').parent.absolute()
 dataset_path = p / 'dataset'
 
 #Quantize to [0,7] range and 8x8 images?
-quantize_test = False
+quantize_test = True
 
 #load dataset
 train_dataset = torchvision.datasets.FashionMNIST(dataset_path, train=True, download=True)
@@ -63,14 +64,14 @@ for images, labels in train_dataset:
     break
 
 #Hyperparameters
-batch_size = 100
-epochs = 10
-learning_rate = 0.001
+batch_size = 10
+epochs = 50
+learning_rate = 0.0001
 output_size = 10
 
 #Prepaer data loaders
 train_loader = torch.utils.data.DataLoader(train_dataset, batch_size = batch_size, shuffle = True)
-test_loader = torch.utils.data.DataLoader(test_dataset, batch_size = batch_size, shuffle = True)
+test_loader = torch.utils.data.DataLoader(test_dataset, batch_size = batch_size)
 
 #initialize model
 model = linear_model()
@@ -80,6 +81,9 @@ loss_func = torch.nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
 print(list(model.parameters()))
+
+start_time = time.time()
+best_accuracy = 0
 
 for epoch in range(int(epochs)):
     for i, (images, labels) in tqdm(enumerate(train_loader)):
@@ -101,6 +105,14 @@ for epoch in range(int(epochs)):
         total+= labels.size(0)
         correct+= (predicted == labels).sum()
     accuracy = 100 * correct/total
+
+    if accuracy > best_accuracy:
+        best_accuracy = accuracy
+
     print("Epoch: {}. Loss: {}. Accuracy: {}.".format(epoch, loss.item(), accuracy))
 
+train_time = time.time() - start_time
 print(list(model.parameters()))
+
+print("Total training time: {} s".format(train_time))
+print("Best accuracy: {} %".format(best_accuracy))

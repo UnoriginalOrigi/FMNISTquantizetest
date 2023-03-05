@@ -23,6 +23,21 @@
   <ItemGroup>
     <Compile Include="FMNIST_test.py" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="dataset\" />
+    <Folder Include="dataset\FashionMNIST\" />
+    <Folder Include="dataset\FashionMNIST\raw\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dataset\FashionMNIST\raw\t10k-images-idx3-ubyte" />
+    <Content Include="dataset\FashionMNIST\raw\t10k-images-idx3-ubyte.gz" />
+    <Content Include="dataset\FashionMNIST\raw\t10k-labels-idx1-ubyte" />
+    <Content Include="dataset\FashionMNIST\raw\t10k-labels-idx1-ubyte.gz" />
+    <Content Include="dataset\FashionMNIST\raw\train-images-idx3-ubyte" />
+    <Content Include="dataset\FashionMNIST\raw\train-images-idx3-ubyte.gz" />
+    <Content Include="dataset\FashionMNIST\raw\train-labels-idx1-ubyte" />
+    <Content Include="dataset\FashionMNIST\raw\train-labels-idx1-ubyte.gz" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
        Visual Studio and specify your pre- and post-build commands in

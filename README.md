@@ -4,9 +4,9 @@ Fashion-MNIST tested on a simple LR model with quantization (resized to 8x8 from
 
 No quantization:
 
-Total training time: 634.487 s
+Total training time: 475.557 s
 
-Best accuracy: 84.91 %
+Best accuracy: 84.84 %
 
 ![Picture1](https://user-images.githubusercontent.com/105780035/222964994-bbd02358-71c8-43fb-af37-85206a634f22.png)
 

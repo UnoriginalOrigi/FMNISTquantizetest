@@ -20,6 +20,7 @@ def qunatize_data(train_dataset, test_dataset):
     test_dataset.data = test_dataset.data.type(torch.uint8)
     
     train_dataset.transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor(),torchvision.transforms.Resize([8,8])])
+    #,torchvision.transforms.Resize([8,8])
     test_dataset.transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor(),torchvision.transforms.Resize([8,8])])
     return train_dataset, test_dataset
 
@@ -50,7 +51,7 @@ print('Min Pixel Value: {} \nMax Pixel Value: {}'.format(train_dataset.data.min(
 print('Quantized test: {}'.format(quantize_test))
 if quantize_test:
     train_dataset, test_dataset = qunatize_data(train_dataset, test_dataset)
-    input_size = 8*8
+    input_size = 8**2
     print('New Min Pixel Value: {} \nNew Max Pixel Value: {}'.format(train_dataset.data.min(), train_dataset.data.max()))
 else:
     train_dataset.transform = torchvision.transforms.Compose([torchvision.transforms.ToTensor()])
@@ -64,8 +65,8 @@ for images, labels in train_dataset:
     break
 
 #Hyperparameters
-batch_size = 10
-epochs = 50
+batch_size = 1
+epochs = 20
 learning_rate = 0.0001
 output_size = 10
 
@@ -112,7 +113,12 @@ for epoch in range(int(epochs)):
     print("Epoch: {}. Loss: {}. Accuracy: {}.".format(epoch, loss.item(), accuracy))
 
 train_time = time.time() - start_time
-print(list(model.parameters()))
+torch.set_printoptions(threshold=np.inf)
+
+with open("3b_8x8.txt","w") as f:
+    for item in list(model.parameters()):
+        f.write("%s\n" % item)
+
 
 print("Total training time: {} s".format(train_time))
 print("Best accuracy: {} %".format(best_accuracy))
